@@ -1,6 +1,7 @@
-package com.mulin.deeplearning.perceptron
+package com.mulin.deeplearning.linearUnit
 
 import breeze.plot.{Figure, plot}
+import com.mulin.deeplearning.perceptron.Perceptron
 
 class LinearUnit(inputNum: Int, activatorFunc: (Float => Float))
   extends Perceptron (inputNum, activatorFunc){

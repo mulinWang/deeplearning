@@ -33,8 +33,61 @@
         </plugins>
     </build>
 
+
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>dev</id>
+            <properties>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <!-- log 4j -->
+                <deeplearning.perceptron.log4j.level>DEBUG</deeplearning.perceptron.log4j.level>
+                <deeplearning.perceptron.log.home>.</deeplearning.perceptron.log.home>
+            </properties>
+        </profile>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>test</id>
+            <properties>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <!-- log 4j -->
+                <deeplearning.perceptron.log4j.level>INFO</deeplearning.perceptron.log4j.level>
+                <deeplearning.perceptron.log.home>/mnt/disk1/spark/log</deeplearning.perceptron.log.home>
+            </properties>
+        </profile>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>production</id>
+            <properties>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <!-- log 4j -->
+                <deeplearning.perceptron.log4j.level>INFO</deeplearning.perceptron.log4j.level>
+                <deeplearning.perceptron.log.home>/mnt/disk1/spark/log</deeplearning.perceptron.log.home>
+            </properties>
+        </profile>
+
+    </profiles>
+
     <dependencyManagement>
         <dependencies>
+
+            <!--log-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.21</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.7.21</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.scala-lang</groupId>
@@ -52,6 +105,12 @@
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-reflect</artifactId>
                 <version>2.11.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest_2.11</artifactId>
+                <version>3.0.1</version>
             </dependency>
 
             <!--图表库-->
