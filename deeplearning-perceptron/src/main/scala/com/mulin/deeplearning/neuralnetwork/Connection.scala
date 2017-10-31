@@ -18,6 +18,7 @@ class Connection(upStreamNode: Node, downStreamNode: Node) {
   /**
     * 计算梯度，
     * 梯度 = 下游节点的增量 * 上游节点的输出
+    * △ = δ × x
     */
   def calculateGradient(): Float ={
     gradient = downStreamNode.delta * upStreamNode.output
@@ -27,6 +28,7 @@ class Connection(upStreamNode: Node, downStreamNode: Node) {
   /**
     * 更新权重
     * 先计算一次梯度，在通过梯度的值计算权重
+    * weight = η × δ × x
     * @param rate
     */
   def updateWeight(rate: Float): Unit = {

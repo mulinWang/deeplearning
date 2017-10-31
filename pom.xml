@@ -141,6 +141,17 @@
             <name>aliyun maven</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
         </repository>
+
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
+
 
 </project>
