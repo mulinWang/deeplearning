@@ -12,6 +12,12 @@
     <artifactId>deeplearning-perceptron</artifactId>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -36,6 +42,48 @@
                         <goals>
                             <goal>testCompile</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+
+                            <filters>
+                                <!--没有这个filter，会报java.lang.SecurityException: Invalid signature file digest for Manifest main attributes-->
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <transformers>
+                                <!--没有这个transformer，会报找不到manifest主类的错误-->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.mulin.deeplearning.neuralnetwork.NetworkMain</mainClass>
+                                </transformer>
+
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer"/>
+                            </transformers>
+                            <!--打出最小jar包-->
+                            <minimizeJar>true</minimizeJar>
+                            <!--过滤已知无用jar包-->
+                            <artifactSet>
+                                <excludes>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -77,6 +125,12 @@
                 <scope>test</scope>
             </dependency>
 
+            <!--文件io库-->
+            <dependency>
+                <groupId>com.github.pathikrit</groupId>
+                <artifactId>better-files_2.11</artifactId>
+            </dependency>
+
             <!--图表库-->
             <dependency>
                 <groupId>org.scalanlp</groupId>
@@ -87,7 +141,6 @@
                 <groupId>org.scalanlp</groupId>
                 <artifactId>breeze_2.11</artifactId> <!-- or 2.11 -->
             </dependency>
-
 
             <dependency>
                 <groupId>org.scala-graph</groupId>

@@ -1,4 +1,4 @@
-package com.mulin.deeplearning.neuralnetwork
+package com.mulin.deeplearning.neuralnetwork.connection
 
 import org.scalatest.FunSuite
 import org.slf4j.LoggerFactory

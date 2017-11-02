@@ -1,4 +1,4 @@
-package com.mulin.deeplearning.neuralnetwork
+package com.mulin.deeplearning.neuralnetwork.other
 
 import org.scalatest.FunSuite
 

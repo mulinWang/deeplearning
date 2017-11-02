@@ -23,7 +23,5 @@ class TestFullyConnectedNeuralNetwork extends FunSuite {
       gradientCheck.gradientCheck(neuralNetwork, testSample, testLabel)
       println("--------------")
     }
-
   }
-
 }
